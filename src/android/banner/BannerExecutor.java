@@ -200,29 +200,14 @@ public class BannerExecutor extends AbstractExecutor {
                         adViewLayout.addView(adView, params2);
                         adViewLayout.bringToFront();
                     } else {
-                        ViewGroup wvParentView = (ViewGroup) getWebView().getParent();
-                        if (parentView == null) {
-                            parentView = new LinearLayout(webView.getContext());
-                        }
-                        if (wvParentView != null && wvParentView != parentView) {
-                            ViewGroup rootView = (ViewGroup)(getWebView().getParent());
-                            wvParentView.removeView(getWebView());
-                            ((LinearLayout) parentView).setOrientation(LinearLayout.VERTICAL);
-                            parentView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 0.0F));
-                            getWebView().setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 1.0F));
-                            parentView.addView(getWebView());
-                            rootView.addView(parentView);
-                        }
-
 
                         if (plugin.config.bannerAtTop) {
-                            parentView.addView(adView, 0);
+                            assert false;
+                            webView.addSecondaryView(adView);
+
                         } else {
-                            parentView.addView(adView);
+                            webView.addSecondaryView(adView);
                         }
-                        parentView.bringToFront();
-                        parentView.requestLayout();
-                        parentView.requestFocus();
                     }
 
                     adView.setVisibility(View.VISIBLE);
